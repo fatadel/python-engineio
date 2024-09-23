@@ -275,8 +275,7 @@ class AsyncServer(base_server.BaseServer):
                     r = await self._handle_connect(environ, transport,
                                                    jsonp_index)
                 else:
-                    self._log_error_once('Invalid websocket upgrade',
-                                         'bad-upgrade')
+                    self._log_error_once(f'Invalid websocket upgrade: {upgrade_header}', 'bad-upgrade')
                     r = self._bad_request('Invalid websocket upgrade')
             else:
                 if sid not in self.sockets:
